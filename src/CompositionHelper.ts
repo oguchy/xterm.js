@@ -85,6 +85,9 @@ export class CompositionHelper {
    * @return Whether the Terminal should continue processing the keydown event.
    */
   public keydown(ev: KeyboardEvent): boolean {
+    if (!ev.isComposing) {
+      return true
+    }
     if (this._isComposing || this._isSendingComposition) {
       if (ev.keyCode === 229) {
         // Continue composing if the keyCode is the "composition character"

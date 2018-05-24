@@ -1806,6 +1806,11 @@ export class Terminal extends EventEmitter implements ITerminal, IDisposable, II
           if (ev.keyCode === 65) { // cmd + a
             this.selectAll();
           }
+        } else if (this.browser.isSafari &&
+                   !['Enter', 'Backspace'].includes(ev.key) &&
+                   ev.keyCode === 229
+                   ) {
+          result.key = ev.key;
         }
         break;
     }
